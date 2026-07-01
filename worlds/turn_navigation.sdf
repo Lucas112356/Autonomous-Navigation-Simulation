@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <world name="turn_navigation">
+
+    <plugin filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-sensors-system"
+            name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands"/>
+
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Straight approach -->
+    <model name="cone_inner_s1"><static>true</static><pose>1.00 1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_s1"><static>true</static><pose>1.00 -1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_s2"><static>true</static><pose>2.00 1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_s2"><static>true</static><pose>2.00 -1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_s3"><static>true</static><pose>3.00 1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_s3"><static>true</static><pose>3.00 -1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_s4"><static>true</static><pose>4.00 1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_s4"><static>true</static><pose>4.00 -1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_s5"><static>true</static><pose>5.00 1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_s5"><static>true</static><pose>5.00 -1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+
+    <!-- Curve -->
+    <model name="cone_inner_c0"><static>true</static><pose>5.00 -1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c0"><static>true</static><pose>5.00 1.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c1"><static>true</static><pose>5.78 -1.10 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c1"><static>true</static><pose>6.29 0.83 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c2"><static>true</static><pose>6.50 -1.40 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c2"><static>true</static><pose>7.50 0.33 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c3"><static>true</static><pose>7.12 -1.88 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c3"><static>true</static><pose>8.54 -0.46 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c4"><static>true</static><pose>7.60 -2.50 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c4"><static>true</static><pose>9.33 -1.50 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c5"><static>true</static><pose>7.90 -3.22 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c5"><static>true</static><pose>9.83 -2.71 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c6"><static>true</static><pose>8.00 -4.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c6"><static>true</static><pose>10.00 -4.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+
+    <!-- Exit straight -->
+    <model name="cone_inner_e1"><static>true</static><pose>8.00 -5.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_e1"><static>true</static><pose>10.00 -5.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_e2"><static>true</static><pose>8.00 -6.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_e2"><static>true</static><pose>10.00 -6.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_e3"><static>true</static><pose>8.00 -7.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_e3"><static>true</static><pose>10.00 -7.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_e4"><static>true</static><pose>8.00 -8.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_e4"><static>true</static><pose>10.00 -8.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>5 -4 18 0 1.4 0</pose>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>

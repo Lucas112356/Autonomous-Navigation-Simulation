@@ -6,6 +6,16 @@
   <material name="black"><color rgba="0.1 0.1 0.1 1"/></material>
   <material name="gray"><color rgba="0.6 0.6 0.6 1"/></material>
 
+  <xacro:property name="pi" value="3.14159265"/>
+
+  <!-- ── Dummy base footprint (fixes KDL root link warning) ── -->
+  <link name="base_footprint"/>
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.05"/>
+  </joint>
+
   <!-- ── Base link ── -->
   <link name="base_link">
     <visual>
@@ -45,7 +55,6 @@
     </joint>
   </xacro:macro>
 
-  <xacro:property name="pi" value="3.14159265"/>
   <xacro:wheel name="left"  x_reflect="0"  y_reflect="1"/>
   <xacro:wheel name="right" x_reflect="0"  y_reflect="-1"/>
 
@@ -101,7 +110,8 @@
       <topic>cmd_vel</topic>
       <odom_topic>odom</odom_topic>
       <frame_id>odom</frame_id>
-      <child_frame_id>base_link</child_frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+      <publish_odom_tf>true</publish_odom_tf>
       <max_linear_velocity>3.0</max_linear_velocity>
       <max_angular_velocity>3.0</max_angular_velocity>
       <max_linear_acceleration>2.0</max_linear_acceleration>
@@ -118,6 +128,7 @@
   <gazebo reference="lidar_link">
     <sensor name="lidar" type="gpu_lidar">
       <topic>scan</topic>
+      <frame_id>lidar_link</frame_id>
       <update_rate>10</update_rate>
       <lidar>
         <scan>

@@ -67,6 +67,13 @@ def generate_launch_description():
             output='screen'
         ),
 
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='odom_broadcaster',
+            arguments=['0', '0', '0', '0', '0', '0', 'odom', 'base_footprint']
+        ),
+
         # Auto-start navigation after 7 seconds
         TimerAction(
             period=7.0,
@@ -78,4 +85,5 @@ def generate_launch_description():
                 )
             ]
         )
+        
     ])

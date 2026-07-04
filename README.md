@@ -6,19 +6,19 @@ A Gazebo autonomous navigation simulation built to develop, evaluate and benchma
 
 The simulation utilizes ROS 2, Gazebo Harmonic and a custom differential drive robot to develop autonomous navigation behaviors that will ultimately be validated across multiple navigation scenarios using quantitative performance metrics. The final project will provide a Dockerized, reproducible simulation environment suitable for experimentation, parameter tuning and navigation benchmarking.
 
-## Latest Release: v0.2
-**Turn Navigation**
+## Latest Release: v0.3
+**Half Roundabout Navigation**
 
-Version 0.2 builds on the straight corridor baseline by introducing a 90° curved corridor and full Nav2 integration, allowing the robot to autonomously navigate a multi-segment course (straight approach, curve, exit straight) using waypoint-guided path following with real-time obstacle avoidance via LiDAR.
+Version 0.3 builds on the turn navigation baseline by introducing a half-roundabout course defined by a circular inner arc and elliptical outer arc, requiring the robot to navigate a continuous curved corridor from entry straight through a 180° hairpin and out through the exit straight using Nav2 waypoint following.
+
 
 **Key Features:**
 
-- Nav2 bringup (controller server, planner server, behavior server, costmaps, BT navigator)
-- ROS↔Gazebo TF bridge for full transform tree (`odom → base_footprint → base_link → lidar_link/caster_link`)
-- Waypoint-based course navigation derived from actual obstacle geometry
-- Tuned Regulated Pure Pursuit controller for smooth curve tracking
-- Local/global costmap obstacle avoidance using LiDAR scan data
-- RViz2 visualization with saved camera and display configuration
+- Half-roundabout world defined by arc-sampled cone geometry 
+- Full Nav2 autonomous navigation through a more complex multi-segment geometry
+- Exposed navigation degradation during sustained curved motion, highlighting accumulated odometry drift
+- LiDAR-fed costmap obstacle avoidance across a curved environment
+- Extended RViz2 and Gazebo tooling for course-wide monitoring and debugging
 
 ## Demo
 
@@ -29,6 +29,7 @@ Version 0.2 builds on the straight corridor baseline by introducing a 90° curve
 <p align="center">
   <em>Figure 1. Straight corridor simulation environment demonstrating baseline autonomous navigation..</em>
 </p>
+
 <p align="center">
   <img src="media/turn_navigation.gif" alt="Straight Corridor Demo" width="650">
 </p>
@@ -37,9 +38,17 @@ Version 0.2 builds on the straight corridor baseline by introducing a 90° curve
   <em>Figure 2. Turn navigation simulation environment demonstrating autonomous Nav2 guided navigation through a curved corridor.</em>
 </p>
 
+<p align="center">
+  <img src="media/half_roundabout.gif" alt="Straight Corridor Demo" width="650">
+</p>
+
+<p align="center">
+  <em>Figure 3. Half roundabout simulation environment demonstrating autonomous Nav2 guided navigation through a continuous curved hairpin corridor.</em>
+</p>
+
 ## Features
 
-- Configurable Gazebo Harmonic test environments, including a straight corridor and a curved 90° course, both defined by traffic cone obstacles.
+- Configurable Gazebo Harmonic test environments, including a straight corridor, a curved 90° course and a half-roundabout hairpin, all defined by traffic cone obstacles.
 - Custom differential drive robot model with realistic odometry, 2D LiDAR and full TF tree support.
 - Dual navigation modes: scripted odometry-based motion for baseline testing, and full Nav2 autonomous navigation for complex courses.
 - Real-time obstacle avoidance via LiDAR-fed local and global costmaps.
@@ -54,6 +63,8 @@ Version 0.2 builds on the straight corridor baseline by introducing a 90° curve
 
 **Turn Navigation (v0.2):** Evaluates whether the robot can autonomously navigate a curved corridor using Nav2, tracking a 90° bend defined by cone geometry while avoiding obstacles in real time via LiDAR-fed costmaps.
 
+**Half Roundabout (v0.3):** Evaluates whether the robot can autonomously navigate a continuous curved hairpin corridor using Nav2, exposing odometry drift as a fundamental dead-reckoning limitation over longer curved courses.
+
 ## Scenario Details
 
 | Field             | Description                                                                      |
@@ -62,7 +73,7 @@ Version 0.2 builds on the straight corridor baseline by introducing a 90° curve
 | Environment       | Gazebo Harmonic simulation                                                       |
 | Obstacle Type     | Cone-defined corridor (orange traffic cones, 0.15m radius, 0.5m height)         |
 | Robot Model       | Custom differential drive robot (0.4m x 0.3m x 0.1m body, 0.08m wheel radius)  |
-| Navigation Method | v0.1: Scripted motion via odometry distance tracking. v0.2: Nav2 waypoint following with Regulated Pure Pursuit controller |
+| Navigation Method | v0.1: Scripted motion via odometry distance tracking. v0.2: Nav2 waypoint following with Regulated Pure Pursuit controller. v0.3: Nav2 waypoint following through a continuous curved arc.  |
 | Sensor Setup      | 2D LiDAR (360°, 10Hz, 0.12–10m range), wheel odometry                           |
 | Goal Condition    | Robot reaches the end of the corridor/course without collision                   |
 
@@ -95,12 +106,11 @@ graph TD
 
 ## Version History
 - **v0.1:** Straight Corridor    
-- **v0.2:** Turn Navigation              
+- **v0.2:** Turn Navigation
+- **v0.3:** Roundabout Navigation                 
 
-## Roadmap           
-- **v0.3:** Roundabout Navigation         
-- **v0.4:** Dead-End and Recovery Navigation           
-- **v0.5:** Validation Benchmarking
+## Roadmap                  
+- **v0.4:** Validation Benchmarking
 - **v1.0:** Dockerized Reproducible Release           
 
 ## Author

@@ -18,7 +18,7 @@ def generate_launch_description():
     world_file = os.path.join(pkg, 'worlds', 'turn_navigation.sdf')
     bridge_config = os.path.join(pkg, 'config', 'bridge.yaml')
     nav2_params = os.path.join(pkg, 'config', 'nav2_params.yaml')
-    gui_config_file = os.path.join(pkg, 'config', 'gazebo_gui2.config')
+    gui_config_file = os.path.join(pkg, 'config', 'gazebo_gui_turn_navigation.config')
 
     return LaunchDescription([
 
@@ -55,7 +55,7 @@ def generate_launch_description():
             output='screen'
         ),
 
-        # ROS ↔ Gazebo bridge
+        # ROS to Gazebo bridge
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
@@ -65,7 +65,7 @@ def generate_launch_description():
 
         # Nav2 bringup 
         TimerAction(
-            period=15.0, # delayed to let Gazebo fully load
+            period=7.0, # delayed to let Gazebo fully load
             actions=[
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(
@@ -82,7 +82,7 @@ def generate_launch_description():
 
         # RViz2 for visualization 
         TimerAction(
-            period=7.0, # delayed slightly after Nav2
+            period=10.0, # delayed slightly after Nav2
             actions=[
                 Node(
                     package='rviz2',
@@ -97,7 +97,7 @@ def generate_launch_description():
 
         # Turn navigation
         TimerAction(
-            period=25.0, # delayed for full boot up
+            period=21.0, # delayed for full boot up
             actions=[
                 Node(
                     package='navigation_sim',

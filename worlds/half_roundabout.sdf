@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <world name="half_roundabout">
+
+    <plugin filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-sensors-system"
+            name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands"/>
+
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ── Entry straight left wall (x=-1) ── -->
+    <model name="cone_entry_left_9"><static>true</static><pose>-1.00 -9.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_entry_left_8"><static>true</static><pose>-1.00 -8.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_entry_left_7"><static>true</static><pose>-1.00 -7.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_entry_left_6"><static>true</static><pose>-1.00 -6.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    
+    <!-- ── Entry straight right wall (x=1) ── -->
+    <model name="cone_entry_right_9"><static>true</static><pose>1.00 -9.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_entry_right_8"><static>true</static><pose>1.00 -8.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+
+    <!-- ── Inner arc cones (circle, centre(-1,0), r=5) ── -->
+    <model name="cone_inner_c1"><static>true</static><pose>-0.132 -4.924 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c2"><static>true</static><pose>1.500 -4.330 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c3"><static>true</static><pose>2.830 -3.214 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c4"><static>true</static><pose>3.698 -1.710 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c5"><static>true</static><pose>4.000 0.000 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c6"><static>true</static><pose>3.698 1.710 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c7"><static>true</static><pose>2.830 3.214 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c8"><static>true</static><pose>1.500 4.330 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_inner_c9"><static>true</static><pose>-0.132 4.924 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+
+    <!-- ── Outer arc cones (ellipse, centre(1,0), a=5, b=7) ── -->
+    <model name="cone_outer_c1"><static>true</static><pose>1.868 -6.894 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c2"><static>true</static><pose>3.500 -6.062 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c3"><static>true</static><pose>4.830 -4.500 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c4"><static>true</static><pose>5.698 -2.394 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c5"><static>true</static><pose>6.000 0.000 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c6"><static>true</static><pose>5.698 2.394 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c7"><static>true</static><pose>4.830 4.500 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c8"><static>true</static><pose>3.500 6.062 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_outer_c9"><static>true</static><pose>1.868 6.894 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+
+    <!-- ── Exit straight left wall (x=-1) ── -->
+    <model name="cone_exit_left_6"><static>true</static><pose>-1.00 6.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_exit_left_7"><static>true</static><pose>-1.00 7.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_exit_left_8"><static>true</static><pose>-1.00 8.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_exit_left_9"><static>true</static><pose>-1.00 9.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+
+    <!-- ── Exit straight right wall (x=1) ── -->
+    <model name="cone_exit_right_8"><static>true</static><pose>1.00 8.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+    <model name="cone_exit_right_9"><static>true</static><pose>1.00 9.00 0.25 0 0 0</pose><link name="link"><visual name="visual"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry><material><ambient>1 0.3 0 1</ambient><diffuse>1 0.3 0 1</diffuse></material></visual><collision name="collision"><geometry><cone><radius>0.15</radius><length>0.5</length></cone></geometry></collision></link></model>
+
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>0 0 25 0 1.57 0</pose>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>

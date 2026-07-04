@@ -21,6 +21,15 @@ ament_target_dependencies(turn_navigation
     rclcpp_action
     nav2_msgs
     geometry_msgs
+    nav_msgs
+)
+
+add_executable(half_roundabout_navigation src/half_roundabout_navigation.cpp)
+ament_target_dependencies(half_roundabout_navigation
+    rclcpp
+    rclcpp_action
+    nav2_msgs
+    geometry_msgs
 )
 
 install(TARGETS navigation
@@ -28,6 +37,10 @@ install(TARGETS navigation
 )
 
 install(TARGETS turn_navigation
+    DESTINATION lib/${PROJECT_NAME}
+)
+
+install(TARGETS half_roundabout_navigation
     DESTINATION lib/${PROJECT_NAME}
 )
 

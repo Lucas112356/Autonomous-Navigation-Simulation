@@ -50,8 +50,8 @@ private:
             {7.00, 0.54, 0.6}, // first turn
             {7.83, 1.17, 0.9}, // middle turn
             {8.47, 2.00, 1.1}, // end of turn
-            {9.00, 4.00, 1.25}, // straight going right
-            {9.00, 9.00, 1.3}, // endpoint
+            {9.00, 4.00, 1.20}, // straight going right
+            {9.00, 9.00, 1.25}, // endpoint
         };
 
         auto goal = FollowWaypoints::Goal();

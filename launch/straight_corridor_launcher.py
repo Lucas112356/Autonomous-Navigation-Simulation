@@ -19,7 +19,7 @@ def generate_launch_description():
     # Paths to configuration files
     world_file = os.path.join(pkg, 'worlds', 'straight_corridor.sdf')
     bridge_config = os.path.join(pkg, 'config', 'bridge.yaml')
-    gui_config_file = os.path.join(pkg, 'config', 'gazebo_gui.config')
+    gui_config_file = os.path.join(pkg, 'config', 'gazebo_gui_straight_corridor.config')
     
     return LaunchDescription([
 

@@ -1,0 +1,11 @@
+build/
+install/
+log/
+src/build/
+src/install/
+src/log/
+config/build/
+config/install/
+config/log/
+media/
+.git/

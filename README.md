@@ -2,21 +2,18 @@
 
 ## Overview
 
-A Gazebo autonomous navigation simulation built to develop, evaluate and benchmark autonomous robot navigation within structured simulation environments. The project incrementally expands from fundamental navigation scenarios to increasingly complex environments while emphasizing reproducible development, modular system design and performance evaluation.
+A ROS 2 and Gazebo Harmonic autonomous navigation simulation for developing and evaluating Navigation2 performance across progressively more challenging environments. The project incrementally expands from baseline navigation to sustained curved trajectories while emphasizing reproducible experimentation, modular system design, and quantitative performance evaluation.
 
-The simulation utilizes ROS 2, Gazebo Harmonic and a custom differential drive robot to develop autonomous navigation behaviors that will ultimately be validated across multiple navigation scenarios using quantitative performance metrics. The final project will provide a Dockerized, reproducible simulation environment suitable for experimentation, parameter tuning and navigation benchmarking.
+## Latest Update: v1.0
+**Dockerized Reproducible Release**
 
-## Latest Release: v0.4
-**Validation Benchmarking**
-
-Version 0.4 introduces quantitative performance evaluation across all navigation scenarios. Each course is evaluated over ten repeated trials using Gazebo ground-truth position data, allowing navigation accuracy to be measured independently of odometry drift.
+Version 1.0 packages the full simulation environment into a Docker container, enabling reproducible execution of all navigation scenarios without requiring a local ROS 2 or Gazebo installation. The container includes all dependencies, build artifacts and launch configurations required to run any scenario out of the box.
 
 **Added Features:**
-- 10 trials of quantitative benchmarking across all three navigation scenarios
-- Ground truth position reporting via Gazebo dynamic pose bridge, independent of odometry drift
-- Euclidean exit position error measured against intended waypoint coordinates
-- Navigation time recorded per run with mean and standard deviation across scenarios
-- Identified odometry drift as the primary limiting factor for sustained curved navigation
+- Full Docker containerization with Nvidia GPU passthrough support
+- X11 display forwarding for Gazebo and RViz2 GUI access
+- Single-command build and launch workflow
+- Self-contained environment reproducible across Linux systems
 
 ## Demo
 
@@ -25,7 +22,7 @@ Version 0.4 introduces quantitative performance evaluation across all navigation
 </p>
 
 <p align="center">
-  <em>Figure 1. Straight corridor simulation environment demonstrating baseline autonomous navigation..</em>
+  <em>Figure 1. Straight corridor simulation environment demonstrating baseline autonomous navigation.</em>
 </p>
 
 <p align="center">
@@ -44,18 +41,45 @@ Version 0.4 introduces quantitative performance evaluation across all navigation
   <em>Figure 3. Half roundabout simulation environment demonstrating autonomous Nav2 guided navigation through a continuous arched corridor.</em>
 </p>
 
+## Running with Docker
+
+**Prerequisites:** Docker, Docker Compose, Nvidia GPU with drivers installed, X11 display server running.
+
+**Build:**
+```bash
+docker compose build
+```
+
+**Allow X11 display access:**
+```bash
+xhost +local:docker
+```
+
+**Run:**
+```bash
+docker compose run navigation_sim
+```
+
+**Inside the container, launch any scenario:**
+```bash
+# Straight corridor
+ros2 launch navigation_sim straight_corridor_launcher.py
+
+# Turn navigation
+ros2 launch navigation_sim turn_navigation_launcher.py
+
+# Half roundabout
+ros2 launch navigation_sim half_roundabout_launcher.py
+```
 ## Features
 
-- Configurable Gazebo Harmonic test environments, including a straight corridor, a curved 90° course and a halfroundabout, all defined by traffic cone obstacles.
+- Configurable Gazebo Harmonic test environments, including a straight corridor, a curved 90° course and a half roundabout, all defined by traffic cone obstacles.
 - Custom differential drive robot model with realistic odometry, 2D LiDAR and full TF tree support.
 - Dual navigation modes: scripted odometry-based motion for baseline testing, and full Nav2 autonomous navigation for complex courses.
-- Real-time obstacle avoidance via LiDAR-fed local and global costmaps.
-- Waypoint navigation paths aligned with obstacle geometry to guide autonomous traversal through custom navigation courses.
 - Tuned Regulated Pure Pursuit controller for smooth, overshoot-free curve tracking.
 - RViz2 visualization with preconfigured camera views and display layouts for quick inspection.
-- Modular ROS to Gazebo bridge configuration, making it straightforward to extend to new sensors, topics or world geometries.
 - Quantitative benchmarking across all navigation scenarios, evaluating success rate, navigation time and exit position error over repeated trials.
-- Ground truth position reporting via Gazebo dynamic pose bridge, providing accurate final position independent of odometry drift.
+- Fully containerized simulation environment via Docker with Nvidia GPU passthrough, enabling reproducible execution across Linux systems without a local ROS 2 installation.
 
 ## Test Environment
 
@@ -109,7 +133,7 @@ graph TD
     K --> L[Pure Pursuit Controller]
     L --> F[Velocity Command]
     F --> G[Differential Drive Plugin]
-    G --> H[Course Navigation]
+    G --> H[Robot Motion]
 ```
 
 ## Tech Stack
@@ -126,9 +150,7 @@ graph TD
 - **v0.2:** Turn Navigation
 - **v0.3:** Half Roundabout Navigation
 - **v0.4:** Validation Benchmarking                 
-
-## Roadmap                  
-- **v1.0:** Dockerized Reproducible Release           
+- **v1.0:** Dockerized Reproducible Release          
 
 ## Author
 

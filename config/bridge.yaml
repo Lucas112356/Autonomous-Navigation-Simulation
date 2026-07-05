@@ -23,4 +23,8 @@
   gz_type_name: gz.msgs.Pose_V
   direction: GZ_TO_ROS
 
-
+- ros_topic_name: /ground_truth_pose
+  gz_topic_name: /world/half_roundabout/dynamic_pose/info
+  ros_type_name: tf2_msgs/msg/TFMessage
+  gz_type_name: gz.msgs.Pose_V
+  direction: GZ_TO_ROS
